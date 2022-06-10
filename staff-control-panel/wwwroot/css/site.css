@@ -1,0 +1,32 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.inputDiv {
+    margin: 55px 20px -282px -300px
+}
+
+.opacityInput {
+    opacity: 100%;
+}
+/*.info-content {
+    display: none;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid orange;
+}*/

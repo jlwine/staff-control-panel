@@ -1,0 +1,66 @@
+﻿@model Employee
+
+
+
+    <form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-4">
+            <h2 class="text-primary">Добавление рабочего</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="full_name">ФИО</label>
+            <input asp-for="full_name" class="form-control"/>
+            <span asp-validation-for="full_name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="birthday">Дата рождения</label>
+            <input asp-for="birthday" type="date" class="form-control"/>
+            <span asp-validation-for="birthday" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="gender">Пол</label>
+            <select asp-for="gender" class="form-control">
+                <option value="" class="form-control"></option>
+                <option value="Мужской" class="form-control">Мужской</option>
+                <option value="Женский" class="form-control">Женский</option>
+            </select>
+            <span asp-validation-for="gender" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PostId">Должность</label>
+            <select id="select" asp-for="PostId" class="form-control">
+                <option value="4" class="form-control" selected>Рабочий</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="subunit">Подразделение</label>
+            <select asp-for="subunit" class="form-control">
+                <option selected disabled>Выберите подразделение</option>
+                <option value="Склад материалов и готовой продукции" class="form-control">Склад материалов и готовой продукции</option>
+                <option value="Отдел механизации и автоматизации" class="form-control">Отдел механизации и автоматизации</option>
+                <option value="Ремонтно-строительный цех" class="form-control">Ремонтно-строительный цех</option>
+                <option value="Опытное производство" class="form-control">Опытное производство</option>
+                <option value="Энергомеханический отдело" class="form-control">Энергомеханический отдел</option>
+            </select>
+            <span asp-validation-for="subunit" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="uniq_info">ФИО руководителя</label>
+            <input asp-for="uniq_info" class="form-control"/>
+            <span asp-validation-for="uniq_info" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Добавить</button>
+        <a asp-controller="Employee" asp-action="ChoosingAddPost" class="btn btn-secondary" style="width:150px">
+            Назад к выбору должности
+        </a>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

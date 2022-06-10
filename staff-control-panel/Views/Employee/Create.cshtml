@@ -1,0 +1,135 @@
+﻿@model Employee
+
+
+
+    <form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-4">
+            <h2 class="text-primary">Добавление сотрудника</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="full_name">ФИО</label>
+            <input asp-for="full_name" class="form-control"/>
+            <span asp-validation-for="full_name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="birthday">Дата рождения</label>
+            <input asp-for="birthday" type="date" class="form-control"/>
+            <span asp-validation-for="birthday" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="gender">Пол</label>
+            <select asp-for="gender" class="form-control">
+                <option value="" class="form-control"></option>
+                <option value="Мужской" class="form-control">Мужской</option>
+                <option value="Женский" class="form-control">Женский</option>
+            </select>
+            <span asp-validation-for="gender" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PostId">Должность</label>
+            <select id="select" asp-for="PostId" class="form-control">
+                <option selected disabled>Выберете должность</option>
+                <option value="Директор" class="form-control">Директор</option>
+                <option value="Руководитель подразделения" class="form-control">Руководитель подразделения</option>
+                <option value="Контролер" class="form-control">Контролер</option>
+                <option value="Рабочий" class="form-control">Рабочий</option>
+            </select>
+            <span asp-validation-for="PostId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="subunit">Подразделение</label>
+            <select asp-for="subunit" class="form-control">
+                <option selected disabled>Выберите подразделение</option>
+                <option value="Склад материалов и готовой продукции" class="form-control">Склад материалов и готовой продукции</option>
+                <option value="Отдел механизации и автоматизации" class="form-control">Отдел механизации и автоматизации</option>
+                <option value="Ремонтно-строительный цех" class="form-control">Ремонтно-строительный цех</option>
+                <option value="Опытное производство" class="form-control">Опытное производство</option>
+                <option value="Энергомеханический отдело" class="form-control">Энергомеханический отдел</option>
+            </select>
+            <span asp-validation-for="subunit" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <div class="info-content" id="info-content1">
+                <label asp-for="uniq_info">Выберете дату вступления в должность директора</label>
+            </div>
+            <div class="info-content" id="info-content2">
+                <label asp-for="uniq_info">Введите стаж работы руководителя подразделения</label>
+
+            </div>
+            <div class="info-content" id="info-content3">
+                <label asp-for="uniq_info">Введите зону работы контролёра</label>
+
+
+            </div>
+            <div class="info-content" id="info-content4">
+                <label asp-for="uniq_info">Введите ФИО Руководителя</label>
+            </div>
+                <input asp-for="uniq_info" class="form-control"/>
+                <span asp-validation-for="uniq_info" class="text-danger"></span>
+
+            <script type="text/javascript">
+                //let select = document.getElementById('select');
+                
+                
+                //select.addEventListener('change', function() {
+                //    let index = select.selectedIndex
+                //    if (index == 1) {
+                //        document.getElementById('info-content1').style.display = "block";
+                //    }
+                //    else {
+                //        document.getElementById('info-content1').style.display = "none";
+                //    }
+
+                //    if (index == 2) {
+                //        document.getElementById('info-content2').style.display = "block";
+                //    } else {
+                //        document.getElementById('info-content2').style.display = "none";
+                //    }
+
+                //    if (index == 3) {
+                //        document.getElementById('info-content3').style.display = "block";
+                //    }
+                //    else {
+                //        document.getElementById('info-content3').style.display = "none";
+                //    }
+
+                //    if (index == 4) {
+                //        document.getElementById('info-content4').style.display = "block";
+                //    } else {
+                //        document.getElementById('info-content4').style.display = "none";
+
+                //    }
+                //})
+                
+                    let select = document.getElementById('select');
+                    let block = document.querySelectorAll('.info-content');
+
+                    let lastIndex = 0; // После каждой смены опции, сохраняем сюда индекс предыдущего блока
+                
+                    select.addEventListener('change', function() {
+                    block[lastIndex].style.display = "none";
+                    // Чтобы сразу делать именно его невидимым при следующей смене 
+
+                    let index = select.selectedIndex;
+                    block[index - 1].style.display = "block"; // Показать блок с соответствующим индексом
+
+                    lastIndex = index - 1;
+                    });
+            </script>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Добавить</button>
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Назад к списку
+        </a>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
